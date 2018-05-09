@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Optipng.js - The native javascript png optimizer.</title>
+    <meta name="description" content="Optipng.js - The native javascript png optimizer.">
+    <meta name="keywords" content="png,optimizer,optimize,optipng,javascript,emscript">
+    <meta name="author" content="LI-NA">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/demo.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Optipng.js</h1>
+            <p class="text-muted">Optimize png without losing any information on browser</p>
+        </header>
+        <div class="main">
+            <h3>Demo</h3>
+            <div class="dragArea">
+                <div class="info">
+                    <div class="h2 text-muted">Drag png file here</div>
+                    <div class="text-muted">or...</div>
+                    <div class="btn">
+                        <input type="file" id="fileSelect" accept="image/x-png" style="display:none">
+                        <button id="uploadBtn" class="btn btn-outline-dark" onclick="document.getElementById('fileSelect').click()">Select file</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="imageArea inputImageArea" style="display: none">
+                <p class="text-muted">Input image (<span class="inputSize">100 KB</span>)</p>
+                <img class="inputImage img-thumbnail img-fluid" alt="input image">
+            </div>
+            <div class="imageArea outputImageArea" style="display: none">
+                <p class="text-muted">Output image (<span class="outputSize">100 KB</span>)</p>
+                <img class="outputImage img-thumbnail img-fluid" alt="output image">
+            </div>
+
+            <form class="optionArea">
+                <div class="form-group">
+                    <label for="optimizeInput">Optimize level</label>
+                    <div class="row">
+                        <div class="col-sm-2 col-md-1 optimizeNumber">
+                            <input type="number" class="form-control form-control-sm" id="optimizeInput" min="0" max="7" value="2" readonly>
+                        </div>
+                        <div class="col-sm-10 col-md-11">
+                            <input type="range" class="form-control-range range-slider" id="optimizeRange" min="0" max="7" value="2" oninput="$('#optimizeInput').val($(this).val());" onchange="$('#optimizeInput').val($(this).val());">
+                        </div>
+                    </div>
+                    <small class="form-text text-muted">You can see </small>
+                </div>
+                <div class="form-group">
+                    <label for="options">Extra Options</label>
+                    <input type="text" class="form-control" id="options">
+                    <small class="form-text text-muted">Enter extra options with '-'. ex) -strip all</small>
+                </div>
+            </form>
+
+            <div class="btnArea text-center">
+                <button type="button" id="optimize" class="btn btn-outline-success btn-lg" disabled>Optimize</button>
+                <button type="button" id="reset" class="btn btn-outline-warning btn-lg" disabled>Reset</button>
+            </div>
+
+            <div class="consoleArea">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p>Console</p>
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <div class="loading">
+                            <div class="icon"></div> Loading worker...
+                        </div>
+                        <div class="loaded" style="display: none">
+                            <div class="icon"></div> Worker is ready!
+                        </div>
+                    </div>
+                </div>
+                <pre class="console"></pre>
+            </div>
+        </div>
+
+        <footer>
+            <p class="text-muted text-center">Demo created by <a href="https://github.com/LI-NA" target="_blank">LI-NA</a> under <a href="https://github.com/LI-NA/optipng.js/blob/master/LICENSE" target="_blank">MIT License</a>.</p>
+        </footer>
+    </div>
+
+    <a href="https://github.com/LI-NA/optipng.js"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script src="js/demo.js"></script>
+</body>
+</html>
