@@ -94,7 +94,7 @@ var output = optipng(input, ["-o2"]);
 console.log(output.stdout);
 console.log(output.stderr);
 
-fs.writeFileSync("output.png", out.data);
+fs.writeFileSync("output.png", output.data);
 ```
 
 ### Browser
