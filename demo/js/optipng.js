@@ -16,54 +16,54 @@ var Module = typeof Module !== 'undefined' ? Module : {};
 // --pre-jses are emitted after the Module integration code, so that they can
 // refer to Module (if they choose; they can also define Module)
 function optipng(file, options, printFunction) {
-	if (typeof file === 'undefined')
-		return;
+    if (typeof file === 'undefined')
+        return;
 
-	var stdout = "";
-	var stderr = "";
+    var stdout = "";
+    var stderr = "";
 
-	// Default arguments. set output file
-	var args = ['-out', '/output.png'];
+    // Default arguments. set output file
+    var args = ['-out', '/output.png'];
 
 
-	// You also can use array of options.
-	if (Array.isArray(options)) {
-		args = args.concat(options);
-	} else {
-		// Create command line options to passed using input `options` object
-		for (var key in options) {
-			if (typeof options[key] == "string") {
-				args.push("-" + key);
-				if (typeof options[key] !== "boolean") {
-					// option has a value
-					args.push(String(options[key]));
-				}
-			}
-		}
-	}
+    // You also can use array of options.
+    if (Array.isArray(options)) {
+        args = args.concat(options);
+    } else {
+        // Create command line options to passed using input `options` object
+        for (var key in options) {
+            if (typeof options[key] == "string") {
+                args.push("-" + key);
+                if (typeof options[key] !== "boolean") {
+                    // option has a value
+                    args.push(String(options[key]));
+                }
+            }
+        }
+    }
 
-	// Target file name.
-	args.push("/input.png");
+    // Target file name.
+    args.push("/input.png");
 
-	var Module = {
-		"print": function(text) {
-			stdout += text;
-			if (typeof printFunction == "function") printFunction(text);
-		},
-		"printErr": function(text) {
-			stderr += text;
-			if (typeof printFunction == "function") printFunction(text);
-		},
+    var Module = {
+        "print": function(text) {
+            stdout += text + "\n";
+            if (typeof printFunction == "function") printFunction(text);
+        },
+        "printErr": function(text) {
+            stderr += text + "\n";
+            if (typeof printFunction == "function") printFunction(text);
+        },
 
-		// Mounting input file
-		"preRun": [function() {
-			FS.writeFile("/input.png", file, {
-				encoding: "binary"
-			});
-		}],
-		"arguments": args,
-		"ENVIRONMENT": "SHELL" // maximum compatibility???
-	};
+        // Mounting input file
+        "preRun": [function() {
+            FS.writeFile("/input.png", file, {
+                encoding: "binary"
+            });
+        }],
+        "arguments": args,
+        "ENVIRONMENT": "SHELL" // maximum compatibility???
+    };
 
 
 // Sometimes an existing Module object exists with properties
@@ -66735,33 +66735,33 @@ run();
 
 
 
-	var file = null;
+    var file = null;
 
-	// Try to get output file.
-	try {
-		// read processed image data in file
-		file = FS.readFile("/output.png");
-	} catch (e) {
-		// Cleaning up input png from MEMFS
-		FS.unlink("/input.png");
-		return new Error("No output file: " + stderr);
-	}
+    // Try to get output file.
+    try {
+        // read processed image data in file
+        file = FS.readFile("/output.png");
+    } catch (e) {
+        // Cleaning up input png from MEMFS
+        FS.unlink("/input.png");
+        return new Error("No output file: " + stderr);
+    }
 
-	// Cleanup files from
-	FS.unlink("/output.png");
-	FS.unlink("/input.png");
+    // Cleanup files from
+    FS.unlink("/output.png");
+    FS.unlink("/input.png");
 
-	return {
-		"data": file,
-		"stdout": stdout,
-		"stderr": stderr
-	};
+    return {
+        "data": file,
+        "stdout": stdout,
+        "stderr": stderr
+    };
 };
 
 
 // for npm... maybe working? idk
 if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
-	module.exports = optipng;
+    module.exports = optipng;
 } else {
-	optipng.call(this);
+    optipng.call(this);
 }
