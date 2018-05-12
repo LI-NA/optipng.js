@@ -102,7 +102,15 @@ Please check Demo with Web worker. [https://li-na.github.io/optipng.js/](https:/
 
 ## Build
 Actually, I don't know what it is but I made build shell script and it seems working. Please let me know if you have ANY better way to build this project.
-First, please setup emscript sdk on [here](http://kripken.github.io/emscripten-site/docs/getting_started/downloads.html). Then, download or clone this git and download optipng source code from website. Don't forget to extract optipng on `./deps/optipng`. Finally, just run `./build.sh` on Linux. It will configure optipng and compile with emcc.
+
+You have to setup emscripten sdk on [here](http://kripken.github.io/emscripten-site/docs/getting_started/downloads.html) first.
+
+Then, download or clone this git on your linux computer. (Windows does not supported at this moment)
+```
+$ git clone https://github.com/LI-NA/optipng.js
+```
+
+Finally, just run `./build.sh`. It will configure optipng and compile with emcc.
 
 ## License
 [MIT License](LICENSE)
