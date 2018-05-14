@@ -115,4 +115,4 @@ Finally, just run `./build.sh`. It will configure optipng and compile with emcc.
 ## License
 [MIT License](LICENSE)
 
-optipng source code is under [zlib license](deps/optipng/LICENSE.txt)
+Optipng source code is under [zlib license](deps/optipng/LICENSE.txt)
